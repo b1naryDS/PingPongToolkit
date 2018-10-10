@@ -1,0 +1,31 @@
+<p>
+  players works!
+</p>
+<button routerLink="newPlayer">new player</button>
+<br>
+<br>
+<br>
+<h4>list of players</h4>
+<div class="container">
+  <table class="table" style="width:50%;position:relative;float:left;">
+    <thead>
+      <tr>
+        <th scope="col">player name</th>
+        <th scope="col">sets won</th>
+        <th scope="col">matches won</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of players">
+        <td>{{player.ime}}</td>
+        <td>30 sets</td>
+        <td>5 matches</td>
+      </tr>
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>
+</div>
+
+
+<!--<a class="nav-link" routerLink="players">Players</a>
+<a class="nav-link" routerLink="players">Players</a>-->
