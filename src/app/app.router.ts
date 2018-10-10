@@ -7,13 +7,14 @@ import { PlayerFormComponent } from './components/players/player-form/player-for
 
 export const router: Routes= [
     {path: '', redirectTo: '',pathMatch: 'full'},
+
     {path: 'players', 
     component: PlayersComponent,
     children:[{
         path:'newPlayer',
         component:PlayerFormComponent,
     }]
-},
+    },
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);
