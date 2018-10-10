@@ -1,12 +1,26 @@
 <p>
   players works!
 </p>
-<button>new player</button>
-
+<button routerLink="newPlayer">new player</button>
+<br>
+<br>
+<br>
 <h4>list of players</h4>
-<ul>
-  <li *ngFor="let player of players">{{player.ime}}</li>
-</ul>
+<table class="table" style="width:50%">
+  <thead>
+    <tr>
+      <th scope="col">player name</th>
+      <th scope="col">sets won</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <td>{{player.ime}}</td>
+      <td>30 sets</td>
+    </tr>
+  </tbody>
+</table>
+
 
 <!--<a class="nav-link" routerLink="players">Players</a>
 <a class="nav-link" routerLink="players">Players</a>-->
