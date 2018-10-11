@@ -13,7 +13,14 @@ export const router: Routes= [
     children:[{
         path:'newPlayer',
         component:PlayerFormComponent,
-    }]
+        pathMatch: 'full'
+    },{
+        path:':id',
+        component:PlayerFormComponent,
+        pathMatch: 'full'
+    }
+
+]
     },
 ];
 
