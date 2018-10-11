@@ -15,9 +15,11 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
-const pingpongRoutes = require('./api/routes/pingpong');
+const playersRoutes = require('./api/routes/players');
+const matchesRoutes = require('./api/routes/matches');
 
-app.use('/', pingpongRoutes);
+app.use('/players', playersRoutes);
+app.use('/matches', matchesRoutes);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

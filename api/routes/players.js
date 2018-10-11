@@ -9,9 +9,7 @@ mongoose.set('useFindAndModify', false);
 
 var playerSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  name: String, 
-  matches: [],
-  setsWon: Number
+  name: String,
 }, {collection: 'players'}
 ,{
   versionKey: false // You should be aware of the outcome after set to false
@@ -26,25 +24,47 @@ router.get("/", (req, res, next) => {
       .then(result =>{
         console.log(result);
         res.send(result);
-      })
+      },
+      error=>{
+        console.log("error");
+        res.send(error.name);
+      }) 
+});
+
+router.get("/:id", (req, res, next) => {
+  console.log(req.params.id);
+  PlayerData.findById(req.params.id)
+      .then(
+      result =>{
+        console.log(result);
+        res.send(result);
+      },
+      error=>{
+        console.log("cast error");
+        res.send(error.name);
+      })      
 });
 
 
 router.post("/insert", (req, res, next) => {
+
   const player = {
     _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    matches: req.body.matches,
-    setsWon: req.body.setsWon,
+    name: req.body.name
   };
   console.log(req.body);
   //console.log("player");
   console.log(player);
   var data = new PlayerData(player);
   data
-    .save();
-  console.log(data);
-  res.send(data);
+    .save().then(
+      result=>{
+        res.send(data);
+      },
+      error=>{
+        console.log("error");
+        res.send(error.name);
+      })
 });
 
 
@@ -56,16 +76,26 @@ router.delete("/delete/:id", (req, res, next) => {
       .then(result =>{
         console.log(result);
         res.send(result);
+      },
+      error=>{
+        console.log("error");
+        res.send(error.name);
       })
 });
 
 router.put("/update/:id",(req,res,next)=>{
-  console.log("updejt");
-  console.log(req);
-  PlayerData.find()
-      .then(result =>{
+  
+  console.log("req.body");
+  console.log(req.body.name);
+  PlayerData.findByIdAndUpdate(req.params.id)
+      .then(
+      result =>{
         console.log(result);
         res.send(result);
+      },
+      error=>{
+        console.log("error");
+        res.send(error.name);
       })
 })
 

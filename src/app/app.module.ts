@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { routes } from './app.router';
 import { PlayersComponent } from './components/players/players.component';
 import { PlayerFormComponent } from './components/players/player-form/player-form.component';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
+import {PlayersService} from './services/players.service';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,10 @@ import { PlayerFormComponent } from './components/players/player-form/player-for
   ],
   imports: [
     BrowserModule,
-    routes
+    routes,
+    HttpModule
   ],
-  providers: [],
+  providers: [PlayersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
