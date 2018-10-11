@@ -12,7 +12,7 @@ import { Player } from '../../models/player.model';
 })
 export class PlayersComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  players: Player[] = new Array();
+  players: Player[] = [];
   isDataLoaded=false;
 
 
@@ -20,14 +20,17 @@ export class PlayersComponent implements OnInit, OnDestroy {
     public router: Router,
     private playersService: PlayersService
     ) { 
-    this.subscription = this.playersService.getPlayers().subscribe(data => {this.players.push(data);})
+    this.subscription = this.playersService.getPlayers().subscribe(data => {this.players.push(new Player().deserialize(data));})
   }
 
   ngOnInit() {
     this.playersService.findPlayers().subscribe(
       data=>{
-        console.log(data);
-        this.players = data;
+        this.players = [];
+        data.forEach(element => {
+          console.log(element);
+          this.players.push(new Player().deserialize(element));
+        });
       },
       error=>{
         console.log(error);
@@ -37,6 +40,9 @@ export class PlayersComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+  consolelogit(){
+    console.log(this.players);
   }
 
   
