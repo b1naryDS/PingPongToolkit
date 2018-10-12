@@ -44,8 +44,11 @@ export class PlayersService {
     console.log(data);
     return this.http.post(`${this.apiUrl}/players/insert`, data, httpOptions).pipe(
       map((res) => {
-        res.json();
-        this.testBehaviorSubject.next(data);
+        const pushData = res.json();
+        console.log("pushData");
+        console.log(pushData);
+        console.log("pushData");
+        this.testBehaviorSubject.next(pushData);
       }));
   }
   //editPlayer():Observable<any>{

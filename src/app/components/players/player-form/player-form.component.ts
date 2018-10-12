@@ -13,6 +13,7 @@ export class PlayerFormComponent implements OnInit {
   //name;
   player: Player = new Player;
   isDataLoaded = false;
+  formType;
   placeholder = "neki davor test";
   constructor(
     private route: ActivatedRoute,
@@ -26,21 +27,27 @@ export class PlayerFormComponent implements OnInit {
       this.id=params.id;
       console.log(this.id);
       if(this.id==undefined || this.id==null || this.id == 0){
+        this.formType = 1;
         this.isDataLoaded = true;
       }else{
+        this.formType = 2;
         this.playersService.findPlayersById(this.id).subscribe(
           data=>{
             console.log(data);
             this.player = data;
             this.isDataLoaded = true;
+          },
+          error=>{
+            console.log(error);
+            console.log("id ne postoji");
           }
         )
       }
     });
   }
-
   gurni(){
-    this.playersService.addPlayer({"name":"test davor"}).subscribe(res=>{
+    const name = {"name":this.player.name};
+    this.playersService.addPlayer(name).subscribe(res=>{
       console.log("uspeh");
       console.log(res);
     },

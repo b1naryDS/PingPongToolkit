@@ -8,17 +8,22 @@ import { PlayerFormComponent } from './components/players/player-form/player-for
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
 import {PlayersService} from './services/players.service';
-
+import { FormsModule } from '@angular/forms';
+import { MatchesComponent } from './components/matches/matches.component';
+import { MatchFormComponent } from './components/matches/match-form/match-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     PlayersComponent,
-    PlayerFormComponent
+    PlayerFormComponent,
+    MatchesComponent,
+    MatchFormComponent
   ],
   imports: [
     BrowserModule,
     routes,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [PlayersService],
   bootstrap: [AppComponent]

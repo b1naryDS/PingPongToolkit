@@ -1,0 +1,36 @@
+<p>
+  Matches Work!
+</p>
+<button routerLink="newMatch">new match</button>
+<br>
+<br>
+<br>
+<h4>list of matches</h4>
+<div class="container" >
+  <table class="table" style="width:50%;position:relative;float:left;">
+    <thead>
+      <tr>
+        <th scope="col">players</th>
+        <th scope="col">sets:</th>
+        <th scope="col">1:</th>
+        <th scope="col">2:</th>
+        <th scope="col">3:</th>
+        <th scope="col">4:</th>
+        <th scope="col">5:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--<tr *ngFor="let player of players" [routerLink]="[player._id]">-->
+      <tr style="border-top:2pt solid white;border-bottom:2pt solid white;">
+        <p><br></p>
+      </tr>
+      <tr style="border-top:2pt solid white;border-bottom:2pt solid white;">
+        <table>
+          <tr><td>davor</td></tr>
+          <tr><td>drugi player sa dugackim imenom</td></tr>
+        </table>
+      </tr>
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>
+</div>
