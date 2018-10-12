@@ -13,6 +13,7 @@ export class PlayerFormComponent implements OnInit {
   //name;
   player: Player = new Player;
   isDataLoaded = false;
+  placeholder = "neki davor test";
   constructor(
     private route: ActivatedRoute,
     private router: Router,
