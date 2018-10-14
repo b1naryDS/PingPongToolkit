@@ -1,8 +1,8 @@
 # PingPongToolkit
 MEAN - mongo,expressjs,angular,nodejs
 
-clone project
-npm install
+clone project  
+npm install  
 
 mongo = {  
   download: https://www.mongodb.com/download-center/v2/community  
