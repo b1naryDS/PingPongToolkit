@@ -27,7 +27,6 @@ export class MatchesComponent implements OnInit, OnDestroy {
 
           this.matches.push(match);
         })
-        //this.players.push(player);})
      }
 
   details;
@@ -37,6 +36,7 @@ export class MatchesComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   ngOnInit() {
+    this.matches=[];
     this.matchService.findMatches().subscribe(
       res=>
       {

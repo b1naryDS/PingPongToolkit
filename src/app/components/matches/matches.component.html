@@ -1,6 +1,3 @@
-<p>
-  Matches Work!
-</p>
 <button (click)="setNewDetails()" routerLink="newMatch">new match</button>
 <br>
 <br>
@@ -28,8 +25,8 @@
         
         <td >
           <table>
-            <tr><td>{{match.player1name}}</td></tr>
-            <tr><td>{{match.player2name}}</td></tr>
+            <tr><td>{{match?.player1name}}</td></tr>
+            <tr><td>{{match?.player2name}}</td></tr>
           </table>
         </td>
         <td>
