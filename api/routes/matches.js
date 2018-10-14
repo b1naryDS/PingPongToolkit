@@ -70,8 +70,6 @@ router.get("/", (req, res, next) => {
         });
     }
     getUnionList(function(){
-        console.log("tu je data");
-        console.log(data);
         res.send(data);
     })
 });
@@ -82,18 +80,12 @@ router.post("/insert", (req, res, next) => {
     var player2points = [];
     for(var i = 0;i<5;i++){
         if(req.body.player1points[i]!=0 || req.body.player1points[i]!=null || req.body.player1points[i]!='' || req.body.player1points[i]!=undefined){
-            console.log(req.body.player1points[i]);
-            console.log(req.body.player2points[i]);
             player1points.push(req.body.player1points[i]);
             player2points.push(req.body.player2points[i]);
         }else{
-            console.log(player1points);
-            console.log(player2points);
             break;
         }
     }
-    console.log(req.body.player1Id);
-    console.log(req.body.player2Id);
     const match = {
         _id: new mongoose.Types.ObjectId(),
         player1id: req.body.player1Id,
@@ -102,7 +94,6 @@ router.post("/insert", (req, res, next) => {
         player2points : player2points,
     }
     var data = new MatchData(match);
-    console.log(data);
     data.save().then(
         result=>{
             res.send(data);
@@ -118,7 +109,6 @@ router.delete("/delete/:id", (req, res, next) => {
     console.log(req.params.id);
     MatchData.findByIdAndRemove(req.params.id).exec().then(
         result=>{
-            console.log(result);
             res.send(result);
         },
         error=>{

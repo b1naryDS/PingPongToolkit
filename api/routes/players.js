@@ -34,7 +34,6 @@ var MatchListData = mongoose.model('MatchListData', matchSchema);
 
 
 router.get("/", (req, res, next) => {
-//odavle
 var data = [];
   
     function getMatchList(callback){
@@ -43,11 +42,9 @@ var data = [];
                 console.log(err);
                 callback();
             }else{
-                console.log(result);
                 const matchList ={
                     "matches":result
                 }
-                console.log(matchList);
                 data.push(matchList);
                 callback();
             }
@@ -75,21 +72,8 @@ var data = [];
         });
     }
     getUnionList(function(){
-        console.log("tu je data");
-        console.log(data)
         res.send(data);
     })
-//dovle
-
-  //PlayerData.find()
-  //    .then(result =>{
-  //      console.log(result);
-  //      res.send(result);
-  //    },
-  //    error=>{
-  //      console.log("error");
-  //      res.send(error.name);
-  //    }) 
 });
 
 router.get("/:id", (req, res, next) => {
@@ -113,9 +97,6 @@ router.post("/insert", (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name
   };
-  console.log(req.body);
-  //console.log("player");
-  console.log(player);
   var data = new PlayerData(player);
   data
     .save().then(
@@ -130,8 +111,6 @@ router.post("/insert", (req, res, next) => {
 
 
 router.delete("/delete/:id", (req, res, next) => {
-  console.log(req.params.id);
-  //var id = req.params.id;
   PlayerData.findByIdAndRemove(req.params.id).exec();
   PlayerData.find()
       .then(result =>{
@@ -145,9 +124,7 @@ router.delete("/delete/:id", (req, res, next) => {
 });
 
 router.put("/update/:id",(req,res,next)=>{
-  
-  console.log("req.body");
-  console.log(req.body.name);
+
   PlayerData.findByIdAndUpdate(req.params.id)
       .then(
       result =>{
