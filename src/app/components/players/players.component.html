@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <p>
   players works!
 </p>
-<button routerLink="newPlayer">new player</button>
+<button (click)="setNewDetails()" routerLink="newPlayer">new player</button>
 <br>
 <br>
 <br>
@@ -11,19 +12,18 @@
     <thead>
       <tr>
         <th scope="col">player name</th>
-        <th scope="col">sets won</th>
-        <th scope="col">matches won</th>
+        <th scope="col" (click)="sortBySetsWon()"><i class="fas fa-arrows-alt-v"></i> sets won</th>
+        
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let player of players" [routerLink]="[player._id]">
+      <tr *ngFor="let player of players"  (click)="getPlayerDetails(player)">
         <td>{{player.name}}</td>
-        <td>30 sets</td>
-        <td>5 matches</td>
+        <td>{{player.setsWon}}</td>
       </tr>
     </tbody>
   </table>
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
 
 

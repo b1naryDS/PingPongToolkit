@@ -1,3 +1,6 @@
 .table td{
     border-top:none;
 }
+tr:hover {
+    background-color: #4b4b4b;
+}

@@ -1,7 +1,7 @@
 <p>
   Matches Work!
 </p>
-<button routerLink="newMatch">new match</button>
+<button (click)="setNewDetails()" routerLink="newMatch">new match</button>
 <br>
 <br>
 <br>
@@ -21,38 +21,53 @@
     </thead>
     <tbody>
       <!--<tr *ngFor="let player of players" [routerLink]="[player._id]">-->
-      <tr style="border-top:2pt solid white;border-bottom:2pt solid white;">
+      <tr  style="border-top:2pt solid white;border-bottom:2pt solid white;">
         <p><br></p>
       </tr>
-      <tr style="border-top:2pt solid white;border-bottom:2pt solid white;">
-        <td>
+      <tr (click)="getMatchDetails(match)" *ngFor="let match of matches" style="border-top:2pt solid white;border-bottom:2pt solid white;">
+        
+        <td >
           <table>
-            <tr><td>davor</td></tr>
-            <tr><td>drugi player sa dugackim imenom</td></tr>
+            <tr><td>{{match.player1name}}</td></tr>
+            <tr><td>{{match.player2name}}</td></tr>
           </table>
         </td>
         <td>
-          
         </td>
         <td>
-          test
+          <table>
+            <tr><td>{{match?.player1points[0]}}</td></tr>
+            <tr><td>{{match?.player2points[0]}}</td></tr>
+          </table>
         </td>
         <td>
-          test
+          <table>
+            <tr><td>{{match?.player1points[1]}}</td></tr>
+            <tr><td>{{match?.player2points[1]}}</td></tr>
+          </table>
         </td>
         <td>
-          test
+          <table>
+            <tr><td>{{match?.player1points[2]}}</td></tr>
+            <tr><td>{{match?.player2points[2]}}</td></tr>
+          </table>
         </td>
         <td>
-          test
+          <table>
+            <tr><td>{{match?.player1points[3]}}</td></tr>
+            <tr><td>{{match?.player2points[3]}}</td></tr>
+          </table>
         </td>
         <td>
-          test
+          <table>
+            <tr><td>{{match?.player1points[4]}}</td></tr>
+            <tr><td>{{match?.player2points[4]}}</td></tr>
+          </table>
         </td>
 
 
       </tr>
     </tbody>
   </table>
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>

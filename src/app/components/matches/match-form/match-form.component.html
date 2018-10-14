@@ -1,17 +1,61 @@
-<div style="width:50%;position:relative;float:left;" >
+<div style="width:48%;position:relative;float:left;" >
     <div style="margin:0 auto;display:table">
       <form>
         <div class="form-group">
-          <h4>name:</h4>
+          
+          <br>
+          <div style="width:48%;position:relative;float:left;">
+              <h4>player 1:</h4>
+              <select  name="p1name" *ngIf="formType === 1" (ngModelChange)="onChange($event,1)" [(ngModel)]="selectedPlayer1">
+                  <option [ngValue]="p1" *ngFor="let p1 of players" name="p1name">{{p1.name}}</option>
+              </select>
+              <br>
+            SET :1
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true"  min=0 [(ngModel)]="setsHolderModel.p1.p1set1" name="p1set1">
+            <br>
+            SET :2
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true"  min=0 [(ngModel)]="setsHolderModel.p1.p1set2" name="p1set2">
+            <br>
+            SET :3
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true"  min=0 [(ngModel)]="setsHolderModel.p1.p1set3" name="p1set3">
+            <br>
+            SET :4
+            <input style="width:40%" required type="number"  [disabled]="formType === 1 ? false : true" min=0 [(ngModel)]="setsHolderModel.p1.p1set4" name="p1set4">
+            <br>
+            SET :5
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true"  min=0 [(ngModel)]="setsHolderModel.p1.p1set5" name="p1set5">
+          </div>
+          
+          <div style="width:48%;position:relative;float:left;">
+            
+            <h4>player 2:</h4>
+            <select name="p2name" *ngIf="formType === 1" (ngModelChange)="onChange($event,2)" [(ngModel)]="selectedPlayer2" >
+                <option [ngValue]="p2" *ngFor="let p2 of players" name="p2name">{{p2.name}}</option>
+            </select>
+            <br>
+            SET :1
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true" min=0 [(ngModel)]="setsHolderModel.p2.p2set1" name="p2set1">
+            <br>
+            SET :2
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true" min=0 [(ngModel)]="setsHolderModel.p2.p2set2" name="p2set2">
+            <br>
+            SET :3
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true" min=0 [(ngModel)]="setsHolderModel.p2.p2set3" name="p2set3">
+            <br>
+            SET :4
+            <input style="width:40%" required type="number"  [disabled]="formType === 1 ? false : true"  min=0 [(ngModel)]="setsHolderModel.p2.p2set4" name="p2set4">
+            <br>
+            SET :5
+            <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true"  min=0 [(ngModel)]="setsHolderModel.p2.p2set5" name="p2set5">
+          </div>
+          <br>
           <!--<input type="text" [value]="isDataLoaded && formType === 2 ? player.name : ''">-->
-          <input type="text">
-          <h4>sets won:</h4>
-          <input type="number" disabled="true" value=30>
-          <h4>matches won:</h4>
-          <input type="number" disabled="true" value=5>
+          
         </div>
       </form>
-      <button type="button">Submit</button>
+      <button type="button" [disabled]="formType === 1 ? false : true" (click)="addMatch()">Submit</button>
+      <span [hidden]="!errorLog">Sets points are invalid!</span>
+      <span [hidden]="!successLog">Submit successful!</span>
     </div>
   </div>
   

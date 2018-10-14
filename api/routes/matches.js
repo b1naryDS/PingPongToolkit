@@ -12,8 +12,8 @@ var matchSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     player1id: mongoose.Schema.Types.ObjectId,
     player2id: mongoose.Schema.Types.ObjectId,
-    player1points:[Number],
-    player2points:[Number],
+    player1points: [],
+    player2points: []
 
   }, {collection: 'matches'}
   ,{
@@ -33,17 +33,6 @@ var matchSchema = new Schema({
   var PlayerListData = mongoose.model('PlayerListData', playerSchema);
   var MatchData = mongoose.model('MatchData', matchSchema);
 
-  router.get("/test", (req, res, next) => {
-    MatchData.find().exec(function(err,result){
-        if(err){
-            console.log(err);
-            res.send(err);
-        }else{
-            console.log(result);
-            res.send(result);
-        }
-    })
-  });
 router.get("/", (req, res, next) => {
     var data = [];
     
@@ -82,7 +71,7 @@ router.get("/", (req, res, next) => {
     }
     getUnionList(function(){
         console.log("tu je data");
-        console.log(data)
+        console.log(data);
         res.send(data);
     })
 });
@@ -93,6 +82,8 @@ router.post("/insert", (req, res, next) => {
     var player2points = [];
     for(var i = 0;i<5;i++){
         if(req.body.player1points[i]!=0 || req.body.player1points[i]!=null || req.body.player1points[i]!='' || req.body.player1points[i]!=undefined){
+            console.log(req.body.player1points[i]);
+            console.log(req.body.player2points[i]);
             player1points.push(req.body.player1points[i]);
             player2points.push(req.body.player2points[i]);
         }else{
@@ -101,14 +92,17 @@ router.post("/insert", (req, res, next) => {
             break;
         }
     }
+    console.log(req.body.player1Id);
+    console.log(req.body.player2Id);
     const match = {
         _id: new mongoose.Types.ObjectId(),
-        player1id: req.body.player1id,
-        player2id: req.body.player2id,
-        player1points: req.body.player1points,
-        player2points: req.body.player2points,
+        player1id: req.body.player1Id,
+        player2id: req.body.player2Id,
+        player1points : player1points,
+        player2points : player2points,
     }
     var data = new MatchData(match);
+    console.log(data);
     data.save().then(
         result=>{
             res.send(data);

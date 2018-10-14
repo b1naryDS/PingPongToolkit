@@ -5,15 +5,14 @@
       <div class="form-group">
         <h4>name:</h4>
         <!--<input type="text" [value]="isDataLoaded && formType === 2 ? player.name : ''">-->
-        <input type="text" [(ngModel)]="player.name" name="playerName">
+        <input type="text" [disabled]="formType === 1 ? false : true" [(ngModel)]="player.name" name="playerName">
         <h4>sets won:</h4>
-        <input type="number" disabled="true" value=30>
-        <h4>matches won:</h4>
-        <input type="number" disabled="true" value=5>
+        <input type="number" disabled="true" [(ngModel)]="player.setsWon" name="playerSetsWon">
+        
         {{formType}}
       </div>
     </form>
-    <button type="button" (click)="gurni()" [disabled]="formType === 1 ? false : true">Submit</button>
+    <button type="button" (click)="addPlayer()" [disabled]="formType === 1 ? false : true">Submit</button>
   </div>
 </div>
 

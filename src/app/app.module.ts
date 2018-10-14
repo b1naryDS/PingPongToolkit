@@ -11,6 +11,7 @@ import {PlayersService} from './services/players.service';
 import { FormsModule } from '@angular/forms';
 import { MatchesComponent } from './components/matches/matches.component';
 import { MatchFormComponent } from './components/matches/match-form/match-form.component';
+import { MatchesService } from './services/matches.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,7 @@ import { MatchFormComponent } from './components/matches/match-form/match-form.c
     HttpModule,
     FormsModule
   ],
-  providers: [PlayersService],
+  providers: [PlayersService,MatchesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

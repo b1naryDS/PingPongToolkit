@@ -16,19 +16,80 @@ var playerSchema = new Schema({
 }
 );
 
+var matchSchema = new Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  player1id: mongoose.Schema.Types.ObjectId,
+  player2id: mongoose.Schema.Types.ObjectId,
+  player1points:[],
+  player2points:[],
+
+}, {collection: 'matches'}
+,{
+  versionKey: false // You should be aware of the outcome after set to false
+}
+);
+
 var PlayerData = mongoose.model('PlayerData', playerSchema);
+var MatchListData = mongoose.model('MatchListData', matchSchema);
 
 
 router.get("/", (req, res, next) => {
-  PlayerData.find()
-      .then(result =>{
-        console.log(result);
-        res.send(result);
-      },
-      error=>{
-        console.log("error");
-        res.send(error.name);
-      }) 
+//odavle
+var data = [];
+  
+    function getMatchList(callback){
+      MatchListData.find().exec(function(err,result){
+            if(err){
+                console.log(err);
+                callback();
+            }else{
+                console.log(result);
+                const matchList ={
+                    "matches":result
+                }
+                console.log(matchList);
+                data.push(matchList);
+                callback();
+            }
+        })
+    }
+    function getPlayerList(callback){
+      PlayerData.find().exec(function(err,result){
+            if(err){
+                console.log(err);
+                callback();
+            }else{
+              console.log(result);
+                const playerList ={
+                    "players":result
+                }
+                console.log(playerList);
+                data.push(playerList);
+                callback();
+            }
+        })
+    }
+    function getUnionList(callback){
+        getMatchList(function(){
+            getPlayerList(callback);
+        });
+    }
+    getUnionList(function(){
+        console.log("tu je data");
+        console.log(data)
+        res.send(data);
+    })
+//dovle
+
+  //PlayerData.find()
+  //    .then(result =>{
+  //      console.log(result);
+  //      res.send(result);
+  //    },
+  //    error=>{
+  //      console.log("error");
+  //      res.send(error.name);
+  //    }) 
 });
 
 router.get("/:id", (req, res, next) => {
