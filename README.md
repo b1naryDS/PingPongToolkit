@@ -4,14 +4,7 @@ MEAN - mongo,expressjs,angular,nodejs
 clone project  
 npm install  
 
-mongo = {  
-  goto    : ...instalation-folder/mongodb/server/4.0/bin  
-  run     : mongod  
-}  
-  
-expressjs:{  
-  goto    : ...cloned-folder/pingpongtoolkit-master  
-  run     : node server.js  
-}  
-  
-ng serve
+Run each of these commands in separate terminals,  
+1. mongod - run mongo  
+2. npm run start-server - run "backend"  
+3. npm start - run angular app  
