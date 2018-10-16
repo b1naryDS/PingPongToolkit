@@ -55,9 +55,11 @@ export class PlayersService {
         this.testBehaviorSubject.next(pushData);
       }));
   }
-  //editPlayer():Observable<any>{
-    
-  //}
+  editPlayer(data):Observable<any>{
+    return this.http.put(`${this.apiUrl}/players/update/:id`,data).pipe(
+      map(res=>res)
+    )
+  }
   getPlayerDetails(): Observable<any>{
     return this.playerBehaviorSubject.asObservable();
   }

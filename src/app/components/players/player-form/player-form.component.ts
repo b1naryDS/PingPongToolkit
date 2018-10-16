@@ -58,6 +58,23 @@ export class PlayerFormComponent implements OnInit, OnDestroy {
     }
     )
   }
+  editPlayer(){
+    //console.log(this.player);
+    const editedPlayer = {
+      "name":this.player.name,
+      "_id":this.player._id
+    }
+    console.log(editedPlayer);
+    this.playersService.editPlayer(editedPlayer).subscribe(result=>{
+      console.log("res");
+      console.log(result.json());
+    },
+    error=>{
+      console.log("error");
+      console.log(error);
+    });
+
+  }
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }

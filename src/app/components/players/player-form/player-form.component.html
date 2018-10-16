@@ -4,15 +4,16 @@
     <form>
       <div class="form-group">
         <h4>name:</h4>
-        <!--<input type="text" [value]="isDataLoaded && formType === 2 ? player.name : ''">-->
-        <input type="text" [disabled]="formType === 1 ? false : true" [(ngModel)]="player.name" name="playerName">
+        <!--<input type="text" [value]="isDataLoaded && formType === 2 ? player.name : ''">  [disabled]="formType === 1 ? false : true"-->
+        <input type="text"  [(ngModel)]="player.name" name="playerName">
         <h4>sets won:</h4>
         <input type="number" disabled="true" [(ngModel)]="player.setsWon" name="playerSetsWon">
         
         {{formType}}
       </div>
     </form>
-    <button type="button" (click)="addPlayer()" [disabled]="formType === 1 ? false : true">Submit</button>
+    <button type="button" (click)="addPlayer()" [disabled]="formType === 1 ? false : true">Submit New</button>
+    <button type="button" (click)="editPlayer()" [disabled]="formType === 1 ? true : false">Submit Edit</button>
   </div>
 </div>
 

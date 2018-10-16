@@ -124,8 +124,14 @@ router.delete("/delete/:id", (req, res, next) => {
 });
 
 router.put("/update/:id",(req,res,next)=>{
-
-  PlayerData.findByIdAndUpdate(req.params.id)
+  console.log("req.body.name");
+  console.log(req.body.name);
+  var data = {
+    _id: req.body._id,
+    name: req.body.name,
+  }
+  console.log(data);
+  PlayerData.findByIdAndUpdate(data._id,data,{new: true})
       .then(
       result =>{
         console.log(result);
@@ -133,8 +139,9 @@ router.put("/update/:id",(req,res,next)=>{
       },
       error=>{
         console.log("error");
+        console.log(error.name);
         res.send(error.name);
-      })
+      }) 
 })
 
 
