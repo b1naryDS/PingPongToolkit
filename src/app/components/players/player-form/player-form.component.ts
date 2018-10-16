@@ -49,7 +49,8 @@ export class PlayerFormComponent implements OnInit, OnDestroy {
   addPlayer(){
     const name = {"name":this.player.name};
     this.playersService.addPlayer(name).subscribe(res=>{
-      console.log(res);
+      console.log("res");
+      console.log(res.json());
     },
     error=>{
       console.log("error");

@@ -50,6 +50,7 @@ export class PlayersService {
     console.log(data);
     return this.http.post(`${this.apiUrl}/players/insert`, data, httpOptions).pipe(
       map((res) => {
+        console.log(res.json());
         const pushData = res.json();
         this.testBehaviorSubject.next(pushData);
       }));

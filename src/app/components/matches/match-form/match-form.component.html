@@ -31,7 +31,8 @@
             <h4>player 2:</h4>
             <select name="p2name" *ngIf="formType === 1" (ngModelChange)="onChange($event,2)" [(ngModel)]="selectedPlayer2" >
                 <option [ngValue]="p2" *ngFor="let p2 of players" name="p2name">{{p2.name}}</option>
-            </select>
+            </select> 
+            
             <br>
             SET :1
             <input style="width:40%" required type="number" [disabled]="formType === 1 ? false : true" min=0 [(ngModel)]="setsHolderModel.p2.p2set1" name="p2set1">

@@ -29,6 +29,7 @@ export class PlayersComponent implements OnInit, OnDestroy {
     this.subscription = this.playersService.getPlayers().subscribe(data => 
       {
       const player = {
+        _id: data._id,
         name: data.name,
         setsWon: 0,
         matchesWon: 0
