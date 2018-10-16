@@ -201,7 +201,22 @@ export class MatchFormComponent implements OnInit, OnDestroy {
         }
       }
       else if(player1[i]===undefined && player2[i]===undefined){
-        if((wonSetsp1===3&&wonSetsp1>wonSetsp2)||(wonSetsp2===3&&wonSetsp2>wonSetsp1)){}
+        if((wonSetsp1===3&&wonSetsp1>wonSetsp2)||(wonSetsp2===3&&wonSetsp2>wonSetsp1)){
+          if(i===4){}
+        }
+        else{
+          this.successLog = false;
+          this.errorLog = true;
+          console.log("err");
+          break;
+        }
+      }
+      if(i===4){
+        if((wonSetsp1===3&&wonSetsp1>wonSetsp2)||(wonSetsp2===3&&wonSetsp2>wonSetsp1)){
+          console.log("ovdeeeeeeeeeeeeeeeeeeeee")
+          this.successLog = true;
+          this.errorLog = false;
+        }
         else{
           this.successLog = false;
           this.errorLog = true;
@@ -210,7 +225,8 @@ export class MatchFormComponent implements OnInit, OnDestroy {
         }
       }
     }
-
+    console.log(wonSetsp1);
+    console.log(wonSetsp2);
     if(this.successLog === true){
       this.pushMatch();
     }
